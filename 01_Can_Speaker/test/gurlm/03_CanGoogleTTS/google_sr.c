@@ -220,7 +220,9 @@ google_sr_handle_t google_sr_init(google_sr_config_t *config)
     sr->api_key = strdup(config->api_key);
     AUDIO_MEM_CHECK(TAG, sr->api_key, goto exit_sr_init);
 
-    i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
+    //i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
+    i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_MIC();
+    //i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_SPEAKER();
     i2s_cfg.type = AUDIO_STREAM_READER;
     sr->i2s_reader = i2s_stream_init(&i2s_cfg);
 
