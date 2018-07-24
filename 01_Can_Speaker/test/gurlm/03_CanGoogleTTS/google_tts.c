@@ -170,10 +170,10 @@ google_tts_handle_t google_tts_init(google_tts_config_t *config)
     tts->api_key = strdup(config->api_key);
     AUDIO_MEM_CHECK(TAG, tts->api_key, goto exit_tts_init);
 
-
+    
     tts->sample_rate = config->playback_sample_rate;
-
-    i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
+    //i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_DEFAULT();
+    i2s_stream_cfg_t i2s_cfg = I2S_STREAM_CFG_SPEAKER();
     i2s_cfg.type = AUDIO_STREAM_WRITER;
     tts->i2s_writer = i2s_stream_init(&i2s_cfg);
 
