@@ -106,14 +106,14 @@ void translate_task(void *pv)
     ESP_LOGI(TAG, "audio_hal_init finish");
     //audio_hal_ctrl_codec(hal, AUDIO_HAL_CODEC_MODE_BOTH, AUDIO_HAL_CTRL_START);
     
-    /*google_sr_config_t sr_config = {
+    google_sr_config_t sr_config = {
         .api_key = CONFIG_GOOGLE_API_KEY,
         .lang_code = GOOGLE_SR_LANG,
         .record_sample_rates = EXAMPLE_RECORD_PLAYBACK_SAMPLE_RATE,
         .encoding = ENCODING_LINEAR16,
         .on_begin = google_sr_begin,
     };
-    google_sr_handle_t sr = google_sr_init(&sr_config);*/
+    google_sr_handle_t sr = google_sr_init(&sr_config);
     
     google_tts_config_t tts_config = {
         .api_key = CONFIG_GOOGLE_API_KEY,
@@ -126,7 +126,7 @@ void translate_task(void *pv)
     audio_event_iface_handle_t evt = audio_event_iface_init(&evt_cfg);
 
     ESP_LOGI(TAG, "[4.1] Listening event from the pipeline");
-    //googe_sr_set_listener(sr, evt);
+    googe_sr_set_listener(sr, evt);
     googe_tts_set_listener(tts, evt);
 
     ESP_LOGI(TAG, "[4.2] Listening event from peripherals");
@@ -153,8 +153,7 @@ void translate_task(void *pv)
             ESP_LOGI(TAG, "[ * ] TTS Finish");
             continue;
         }
-
-		/*
+	
 
         if (msg.source_type != PERIPH_ID_BUTTON) {
             continue;
@@ -190,12 +189,10 @@ void translate_task(void *pv)
             ESP_LOGI(TAG, "Translated text = %s", translated_text);
             google_tts_start(tts, translated_text, GOOGLE_TTS_LANG);
         }
-
-		*/
-
+	
     }
     ESP_LOGI(TAG, "[ 6 ] Stop audio_pipeline");
-    //google_sr_destroy(sr);
+    google_sr_destroy(sr);
     google_tts_destroy(tts);
     /* Stop all periph before removing the listener */
     esp_periph_stop_all();
