@@ -42,8 +42,8 @@ extern "C" {
 #define GPIO_LED_GREEN              22
 
 /* I2C gpios */
-#define IIC_CLK                     23
-#define IIC_DATA                    18
+#define IIC_CLK                    100
+#define IIC_DATA                    100
 
 /* PA */
 //#define GPIO_PA_EN                  GPIO_NUM_21
@@ -59,21 +59,27 @@ extern "C" {
 #define GPIO_MODE                   GPIO_NUM_39
 
 /* Touch pad related */
-#define TOUCH_SEL_SET               TOUCH_PAD_SEL9
+/*#define TOUCH_SEL_SET               TOUCH_PAD_SEL9
 #define TOUCH_SEL_PLAY              TOUCH_PAD_SEL8
 #define TOUCH_SEL_VOLUP             TOUCH_PAD_SEL7
 #define TOUCH_SEL_VOLDWN            TOUCH_PAD_SEL4
 #define TOUCH_SET                   TOUCH_PAD_NUM9
 #define TOUCH_PLAY                  TOUCH_PAD_NUM8
 #define TOUCH_VOLUP                 TOUCH_PAD_NUM7
-#define TOUCH_VOLDWN                TOUCH_PAD_NUM4
+#define TOUCH_VOLDWN                TOUCH_PAD_NUM4*/
 
+/* I2S gpio */
 /* I2S gpios */
-#define IIS_SCLK                    26//5 
-#define IIS_LCLK                    25//25
-#define IIS_DSIN                    21//26
-#define IIS_DOUT                    35//35
+#define IIS_SCLK                    GPIO_NUM_26
+#define IIS_LCLK                    GPIO_NUM_25
+#define IIS_DSIN                    GPIO_NUM_21
+#define IIS_DOUT                    I2S_PIN_NO_CHANGE
 
+#define IIS_SCLK_M                    GPIO_NUM_17
+#define IIS_LCLK_M                    GPIO_NUM_18
+#define IIS_DSIN_M                    I2S_PIN_NO_CHANGE
+#define IIS_DOUT_M                    GPIO_NUM_5
+  
 #ifdef __cplusplus
 }
 #endif
