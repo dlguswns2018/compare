@@ -263,7 +263,11 @@ audio_element_handle_t i2s_stream_init(i2s_stream_cfg_t *config)
     cfg.task_prio = config->task_prio;
     cfg.task_core = config->task_core;
     cfg.out_rb_size = config->out_rb_size;
-    cfg.tag = "iis";
+    if( config->i2s_port == I2S_NUM_0 ){
+        cfg.tag = "iis";
+    }else{
+        cfg.tag = "iis_mic";
+    }
     cfg.buffer_len = I2S_STREAM_BUF_SIZE;
     i2s_stream_t *i2s = audio_calloc(1, sizeof(i2s_stream_t));
 
